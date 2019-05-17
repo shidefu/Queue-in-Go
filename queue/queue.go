@@ -50,11 +50,11 @@ func (queue *Queue) Poll() (interface{}, error) {
  * @return1: first element
  * @return2: whether the element exists
  */
-func (queue *Queue) First() (interface{}, error) {
-	if len(*queue) == 0 {
+func (queue Queue) First() (interface{}, error) {
+	if len(queue) == 0 {
 		return nil, errors.New("Queue Over Flow!")
 	}
-	return (*queue)[0], nil
+	return (queue)[0], nil
 }
 
 /*
@@ -63,16 +63,23 @@ func (queue *Queue) First() (interface{}, error) {
  * @return1: last element
  * @return2: whether the element exists
  */
-func (queue *Queue) Last() (interface{}, error) {
-	if len(*queue) == 0 {
+func (queue Queue) Last() (interface{}, error) {
+	if len(queue) == 0 {
 		return nil, errors.New("Queue Over Flow!")
 	}
-	return (*queue)[len(*queue)-1], nil
+	return (queue)[len(queue)-1], nil
+}
+
+/*
+ * get the size of the queue
+ */
+func (queue Queue) Size() int {
+	return len(queue)
 }
 
 /*
  * judge whether the queue is empty
  */
-func (queue *Queue) Size() int {
-	return len(*queue)
+func (queue Queue) IsEmpty() bool  {
+	return len(queue) == 0
 }
